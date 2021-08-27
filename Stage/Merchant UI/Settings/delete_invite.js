@@ -1,0 +1,22 @@
+/// <reference types="cypress" />
+
+describe('Delete an invite to be a CRUD user', () => {
+    
+    it("Login to Stage", () => {
+        cy.visit("https://stage.blytzpay.com/#/login")
+        cy.get('[data-cy=email]').type("dallen.gutierrez+stage@blytzpay.com")
+        cy.get('[data-cy=password]').type("Dallen11!")
+        cy.get('[data-cy=login]').click()
+    })
+
+    it("Delete an Invite", () => {
+        cy.wait(2000)
+        cy.get('#user-dropdown__BV_toggle_').click()
+        cy.get('[data-cy=merchant-settings-option]').click()
+        cy.get('[data-cy=settings-nav-user-management]').click()
+        cy.wait(2000)
+
+    //  cy.contains('td', 'Email')
+        cy.contains('td', 'dallen.gutierrez+test1@blytzpay.com').parent().find('[data-cy=disableinvite]').click()
+    })
+})
